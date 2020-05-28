@@ -1,0 +1,21 @@
+#     __      __  _____     _____
+#     \ \    / / |  __ \   / ____|
+#      \ \  / /  | |__) | | |     
+#       \ \/ /   |  ___/  | |     
+#        \  /    | |      | |____
+#         \/     |_|       \_____|
+
+module "docker-vpc" {
+
+  source = "./../../../terraform-aws-vpc"
+  #source = "jason-morsley/vpc/aws"
+
+  name = local.name
+
+  vpc_cidr = var.vpc_cidr
+
+  public_subnet_cidrs = var.public_subnet_cidr
+
+  availability_zones = [ data.aws_availability_zones.available.names[0] ]
+  
+}
