@@ -24,8 +24,7 @@ module "public-key" {
 
 module "private-key" {
 
-  source = "./../terraform-aws-s3-object"
-  #source = "jason-morsley/s3-object/aws"
+  source = "jason-morsley/s3-object/aws"
 
   bucket_name = var.bucket_name
 
