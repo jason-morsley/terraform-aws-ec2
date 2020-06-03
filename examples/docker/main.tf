@@ -8,7 +8,6 @@
 module "docker-ec2" {
 
   source = "./../../../terraform-aws-ec2"
-  //source = "jason-morsley/ec2/aws"
   
   name = local.name
 
