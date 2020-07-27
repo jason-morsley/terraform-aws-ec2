@@ -15,7 +15,8 @@
 
 module "allow-ssh" {
 
-  source = "jason-morsley/security-group/aws"
+  source = "./../../../terraform-aws-security-group"
+  #source = "jason-morsley/security-group/aws"
 
   name = "allow-ssh"
   description = "To allow SSH."
