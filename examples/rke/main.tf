@@ -26,7 +26,7 @@ module "rke-ec2" {
 
   bucket_name = local.bucket_name
   
-  mock_depends_on = [
+  depends_on = [
     module.s3_bucket
   ]
   

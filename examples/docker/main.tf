@@ -29,7 +29,7 @@ module "docker-ec2" {
 
   docker = true
   
-  mock_depends_on = [
+  depends_on = [
     module.s3_bucket
   ]
   

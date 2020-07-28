@@ -20,12 +20,12 @@ variable "ami" {
 }
 
 variable "instance_type" {
-  type = string
+  type    = string
   default = "t2.nano"
 }
 
 variable "iam_instance_profile_name" {
-  type = string
+  type    = string
   default = null
 }
 
@@ -47,6 +47,11 @@ variable "bucket_name" {
   type = string
 }
 
+variable "key_prefix" {
+  type    = string
+  default = ""
+}
+
 variable "availability_zone" {
   description = "The Availability Zone for the instance"
   type        = string
@@ -58,7 +63,8 @@ variable "docker" {
   default     = false
 }
 
+/*
 variable "mock_depends_on" {
   type    = any
   default = null
-}
+}*/

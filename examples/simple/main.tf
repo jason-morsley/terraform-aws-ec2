@@ -12,23 +12,21 @@ module "simple-ec2" {
 
   name = local.name
 
-  ami = data.aws_ami.ubuntu.id
+  ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
   vpc_id = module.simple-vpc.id
 
-  #iam_instance_profile_name = module.iam.instance_profile_name
-
   public_subnet_id = module.simple-vpc.public_subnet_ids[0]
 
-  security_group_ids = [ module.allow-ssh.id ]
+  security_group_ids = [module.allow-ssh.id]
 
   availability_zone = data.aws_availability_zones.available.names[0]
-  
+
   bucket_name = local.bucket_name
 
-  mock_depends_on = [
+  depends_on = [
     module.s3_bucket
   ]
-  
+
 }

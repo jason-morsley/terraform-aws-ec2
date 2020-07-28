@@ -7,13 +7,15 @@
 
 locals {
 
+  key_name = "${var.key_prefix}${var.key_prefix == "" ? "" : "-"}${local.name}"
+
   name = "${var.name}-ec2"
 
   merged_tags = merge(
-    { Name = local.name },
-    var.tags
+  { Name = local.name },
+  var.tags
   )
 
   shared_scripts_folder = "shared-scripts-${random_pet.shared-scripts.id}"
-  
+
 }
