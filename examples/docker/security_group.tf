@@ -13,6 +13,7 @@
 #                                 | |    
 #                                 |_|     
 
+#resource "aws_security_group" "allow-ssh" {
 module "allow-ssh" {
 
   source = "./../../../terraform-aws-security-group"
@@ -23,7 +24,27 @@ module "allow-ssh" {
 
   vpc_id = module.docker-vpc.id
   
-  ingress = [{
+}
+
+resource "aws_security_group_rule" "allow_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = [local.all_cidr_block]
+  security_group_id = module.allow-ssh.id
+}
+
+resource "aws_security_group_rule" "allow_all" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = [local.all_cidr_block]
+  security_group_id = module.allow-ssh.id
+}
+
+/*  ingress = [{
     description = "Allow SSH"
     from_port   = 22
     to_port     = 22
@@ -37,6 +58,5 @@ module "allow-ssh" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = [ local.all_cidr_block ]
-  }]
+  }]*/
   
-}

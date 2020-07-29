@@ -14,7 +14,7 @@ module "docker-vpc" {
 
   vpc_cidr = var.vpc_cidr
 
-  public_subnet_cidrs = var.public_subnet_cidr
+  public_subnet_cidrs = ["10.0.1.0/24"] # 251 (256 possible - 5 reserved by AWS)
 
   availability_zones = [ data.aws_availability_zones.available.names[0] ]
   

@@ -21,7 +21,7 @@ module "docker-ec2" {
 
   public_subnet_id = module.docker-vpc.public_subnet_ids[0]
 
-  security_group_ids = [ module.allow-ssh.id ]
+  security_group_ids = [ module.allow-ssh.id ] 
 
   availability_zone = data.aws_availability_zones.available.names[0]
   

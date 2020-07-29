@@ -23,7 +23,7 @@ module "allow-ssh" {
 
   vpc_id = module.rke-vpc.id
 
-  ingress = [{
+/*  ingress = [{
     description = "Allow SSH"
     from_port   = 22
     to_port     = 22
@@ -37,7 +37,7 @@ module "allow-ssh" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = [ local.all_cidr_block ]
-  }]
+  }]*/
 
   tags = local.cluster_id_tag
   
