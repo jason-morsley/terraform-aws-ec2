@@ -22,23 +22,25 @@ module "allow-ssh" {
   description = "To allow SSH."
 
   vpc_id = module.rke-vpc.id
-
-/*  ingress = [{
-    description = "Allow SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [ local.all_cidr_block ]
-  }]
-
-  egress = [{
-    description = "Allow All"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = [ local.all_cidr_block ]
-  }]*/
-
+  
   tags = local.cluster_id_tag
   
+}
+
+resource "aws_security_group_rule" "allow_ssh" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = [local.all_cidr_block]
+  security_group_id = module.allow-ssh.id
+}
+
+resource "aws_security_group_rule" "allow_all" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = [local.all_cidr_block]
+  security_group_id = module.allow-ssh.id
 }
